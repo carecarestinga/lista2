@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Cadastro Produtos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/toSource.min.js"></script> 
+        <script src="js/TestController.js"></script> 
+        <script>
+            function fechar() {
+                    base.innerHTML+="<hr/>";
+            }
+            
+            function verificar(teste, msg) {
+                if(teste)
+                    base.innerHTML+="<div style='color:green'>"+msg+":ok</div>";
+                else 
+                    base.innerHTML+="<div style='color:red'>"+msg+":erro</div>";
+                return teste;
+            }
+
+            function exibir(metodo,param,conteudo,status,dados) {
+                base.innerHTML+="metodo:"+metodo+"<br/>";
+                base.innerHTML+="param:"+param+"<br/>";
+                base.innerHTML+="conteudo:"+conteudo.toSource()+"<br/>";
+                base.innerHTML+="Resposta:"+status+"<br/>";
+                base.innerHTML+=dados.toSource()+"<br/>";
+            }
+
+           
+        </script>
+        <script src="js/testeLivro.js"></script> 
+    </head>
+    <body>
+        <pre id="base"></pre>
+        <script>
+            var base = document.getElementById("base");
+        </script>
+    </body>
+</html>
