@@ -1,5 +1,5 @@
 async function teste() {
-    let teste = new TestController("professores/");
+    let teste = new TestController("usuarios/");
     await teste.testar("GET", "", {},
             (metodo, param, conteudo, status, dados) => {
         exibir(metodo, param, conteudo, status, dados);
@@ -8,23 +8,24 @@ async function teste() {
     });
 
     await teste.testar("POST", "", {
-        "nome": "Teste ok",
-        "siap": "1",
-        "turmas": [1, 3]
+        "nome": "Nome 1",
+        "cpf": "111111111111",
+        "telefone": [999999999, 88888888],
+        "email": "email@email.com"
     },
             (metodo, param, envio, status, retorno) => {
         exibir(metodo, param, envio, status, retorno);
         verificar(status == 201, "Status inserção");
-        verificar(envio.nome == retorno.nome && envio.siap == retorno.siap, "Campos");
+        verificar(envio.nome == retorno.nome && envio.cpf == retorno.cpf && envio.email == retorno.email, "Campos");
         fechar();
     });
 
 
     await teste.testar("POST", "", {
         "id": 144,
-        "nome": "Teste id",
-        "siap": "1",
-        "turmas": [1, 3]
+        "cpf": "111111111111",
+        "telefone": [999999999, 88888888],
+        "email": "email@email.com"
     },
             (metodo, param, envio, status, retorno) => {
         exibir(metodo, param, envio, status, retorno);
@@ -34,8 +35,10 @@ async function teste() {
 
 
     await teste.testar("POST", "", {
-        "siap": "2",
-        "turmas": [1, 3, 1]
+        "nome": "Nome 1",
+        "cpf": "111111111111",
+        "telefone": [999999999, 88888888],
+        "email": "email@email.com"
     },
             (metodo, param, conteudo, status, dados) => {
         exibir(metodo, param, conteudo, status, dados);
@@ -46,9 +49,9 @@ async function teste() {
 
 
     await teste.testar("POST", "", {
-        "nome": "nome ",
-        "siap": "",
-        "turmas": [1, 3, 1]
+        "cpf": "111111111111",
+        "telefone": [999999999, 88888888],
+        "email": "email@email.com"
     },
             (metodo, param, conteudo, status, dados) => {
         exibir(metodo, param, conteudo, status, dados);
@@ -58,17 +61,18 @@ async function teste() {
     });
 
 
-    await teste.testar("POST", "", {
-        "nome": "Teste de lista duplicada",
-        "siap": "2",
-        "turmas": [1, 3, 1]
-    },
-            (metodo, param, conteudo, status, dados) => {
-        exibir(metodo, param, conteudo, status, dados);
-        verificar(status == 400, "Tratamento de duplicados");
-        fechar();
-
-    });
+//    await teste.testar("POST", "", {
+//        "nome": "Nome 1",
+//        "cpf": "111111111111",
+//        "telefone": [999999999, 999999999],
+//        "email": "email@email.com"
+//    },
+//            (metodo, param, conteudo, status, dados) => {
+//        exibir(metodo, param, conteudo, status, dados);
+//        verificar(status == 400, "Tratamento de duplicados");
+//        fechar();
+//
+//    });
 
     await teste.testar("POST", "", {
         "nome": "João do Exemplo",
@@ -85,7 +89,7 @@ async function teste() {
     await teste.testar("POST", "", {
         "nome": "João do Exemplo",
         "siap": "2",
-        "turmas": [1,2,3, 4,5,6, 7, 8, 9]
+        "turmas": [1, 2, 3, 4, 5, 6, 7, 8, 9]
     },
             (metodo, param, conteudo, status, dados) => {
         exibir(metodo, param, conteudo, status, dados);
@@ -192,7 +196,7 @@ async function teste() {
     await teste.testar("PUT", "/" + lista[lista.length - 1].id, {
         "nome": "novo nome",
         "siap": "1",
-        "turmas": [1,2,3, 4,5,6,7,8, 9]
+        "turmas": [1, 2, 3, 4, 5, 6, 7, 8, 9]
     },
             async (metodo, param, envio, status, retorno) => {
         await teste.testar("GET", "/" + lista[lista.length - 1].id, {},
