@@ -26,9 +26,6 @@ public interface UsuarioDAO extends CrudRepository<Usuario, Integer> {
     // Não levar em consideração a caixa.
     List<Usuario> findByNomeStartingWithIgnoreCase(String nome);
 
-    // Pesquisando por duas propriedades: nome e ativo.
-    List<Usuario> findByNomeStartingWithIgnoreCaseAndAtivoEquals(String nome, boolean ativo);
-
     // Nesse caso, precisamos usar o sinal de percentual em nossas consultas.
     List<Usuario> findByNomeLike(String nome);
 
@@ -58,6 +55,6 @@ public interface UsuarioDAO extends CrudRepository<Usuario, Integer> {
     List<Usuario> findByIdIn(int... ids);
 
     // @Query("from Usuario")
-    List<Usuario> pesquisarUsuarios();
+    //List<Usuario> pesquisarUsuarios();
 
 }

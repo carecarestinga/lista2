@@ -53,6 +53,6 @@ public interface LivroDAO extends CrudRepository<Livro, Integer> {
     List<Livro> findByAnoPublicacaoLessThan(int anoPublicacao);
 
     // @Query("from Livro")
-    List<Livro> pesquisarLivros();
+    //List<Livro> pesquisarLivros();
 
 }

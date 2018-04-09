@@ -87,9 +87,9 @@ async function teste() {
     });
 
     await teste.testar("POST", "", {
-        "nome": "João do Exemplo",
-        "siap": "2",
-        "turmas": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        "cpf": "111111111111",
+        "telefone": [999999999, 88888888],
+        "email": "email@email.com"
     },
             (metodo, param, conteudo, status, dados) => {
         exibir(metodo, param, conteudo, status, dados);
@@ -102,8 +102,9 @@ async function teste() {
 
 
     await teste.testar("POST", "", {
-        "nome": "João do Exemplo",
-        "siap": "2"
+        "cpf": "111111111111",
+        "telefone": [999999999, 88888888],
+        "email": "email@email.com"
     },
             (metodo, param, conteudo, status, dados) => {
         exibir(metodo, param, conteudo, status, dados);
@@ -136,9 +137,9 @@ async function teste() {
     let nome = "Nome mudado " + Math.random();
     await teste.testar("PUT", "/" + lista[lista.length - 1].id, {
         "id": 144,
-        "nome": nome,
-        "siap": "1",
-        "turmas": [1, 3]
+        "cpf": "111111111111",
+        "telefone": [999999999, 88888888],
+        "email": "email@email.com"
     },
             async (metodo, param, envio, status, retorno) => {
         await teste.testar("GET", "/" + lista[lista.length - 1].id, {},
@@ -151,9 +152,9 @@ async function teste() {
     });
 
     await teste.testar("PUT", "/" + lista[lista.length - 1].id, {
-        "nome": "",
-        "siap": "1",
-        "turmas": [1, 3]
+        "cpf": "111111111111",
+        "telefone": [999999999, 88888888],
+        "email": "email@email.com"
     },
             async (metodo, param, envio, status, retorno) => {
         await teste.testar("GET", "/" + lista[lista.length - 1].id, {},
@@ -166,9 +167,9 @@ async function teste() {
     });
 
     await teste.testar("PUT", "/3000", {
-        "nome": "aaa",
-        "siap": "1",
-        "turmas": [1, 3]
+        "cpf": "111111111111",
+        "telefone": [999999999, 88888888],
+        "email": "email@email.com"
     },
             (metodo, param, conteudo, status, dados) => {
         exibir(metodo, param, conteudo, status, dados);
@@ -178,9 +179,9 @@ async function teste() {
 
 
     await teste.testar("PUT", "/" + lista[lista.length - 1].id, {
-        "nome": "novo nome",
-        "siap": "1",
-        "turmas": []
+        "cpf": "111111111111",
+        "telefone": [999999999, 88888888],
+        "email": "email@email.com"
     },
             async (metodo, param, envio, status, retorno) => {
         await teste.testar("GET", "/" + lista[lista.length - 1].id, {},
@@ -194,9 +195,9 @@ async function teste() {
 
 
     await teste.testar("PUT", "/" + lista[lista.length - 1].id, {
-        "nome": "novo nome",
-        "siap": "1",
-        "turmas": [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        "cpf": "111111111111",
+        "telefone": [999999999, 88888888],
+        "email": "email@email.com"
     },
             async (metodo, param, envio, status, retorno) => {
         await teste.testar("GET", "/" + lista[lista.length - 1].id, {},

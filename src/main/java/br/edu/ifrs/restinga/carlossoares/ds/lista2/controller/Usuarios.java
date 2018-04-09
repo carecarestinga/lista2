@@ -45,7 +45,7 @@ public class Usuarios {
 
         for (int x = 0; x < usuario.getCpf().length(); x++) {
             for (int y = 0; y < usuario.getCpf().length(); y++) {
-                if ( usuario.getCpf().charAt(x) ==  usuario.getCpf().charAt(y) && x != y ) {
+                if (usuario.getCpf().charAt(x) == usuario.getCpf().charAt(y) && x != y) {
                     throw new RequisicaoInvalida("CPF JÄ EXISTE");
                 }
             }
@@ -76,6 +76,7 @@ public class Usuarios {
     public Usuario inserir(@RequestBody Usuario usuario) {
         usuario.setId(0);
         validaObjeto(usuario);
+        isValido(usuario.getCpf());
         return usuarioDAO.save(usuario);
     }
 
@@ -102,6 +103,39 @@ public class Usuarios {
 
         usuarioDAO.deleteById(id);
 
+    }
+
+    public boolean isValido(String cpfSemFormatacao) {
+
+        if (cpfSemFormatacao.length() != 11 || cpfSemFormatacao.equals("00000000000")
+                || cpfSemFormatacao.equals("99999999999")) {
+            return false;
+        }
+
+        String digitos = cpfSemFormatacao.substring(0, 9);;
+        String dvs = cpfSemFormatacao.substring(9, 11);
+
+        String dv1 = gerarDV(digitos);
+        String dv2 = gerarDV(digitos + dv1);
+
+        return dvs.equals(dv1 + dv2);
+    }
+
+    private String gerarDV(String digitos) {
+        int peso = digitos.length() + 1;
+        int dv = 0;
+        for (int i = 0; i < digitos.length(); i++) {
+            dv += Integer.parseInt(digitos.substring(i, i + 1)) * peso;
+            peso--;
+        }
+
+        dv = 11 - (dv % 11);
+
+        if (dv > 9) {
+            return "0";
+        }
+
+        return String.valueOf(dv);
     }
 
 }
